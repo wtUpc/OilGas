@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oilgas.mapper.PipeReportMapper">
+
+    <sql id="tab">
+        `pipe_report`
+    </sql>
+
+    <sql id="cols">
+
+    </sql>
+
+    <select id="selectByGdh" parameterType="Long" resultType="boolean">
+        SELECT `gsjgsqbg` FROM <include refid="tab"/> WHERE `gdh`=#{gdh}
+    </select>
+</mapper>
