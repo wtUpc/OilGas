@@ -9,4 +9,12 @@ import com.oilgas.model.PipeReport;
 public interface PipeReportService {
     Boolean checkReportExist(Long gdh);
 
+    /**
+     * 创建 报告
+     * @param pipeReport
+     * @return
+     */
+    Boolean save(PipeReport pipeReport);
+
+    PipeReport selectByGdh(Long gdh);
 }

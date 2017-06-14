@@ -13,4 +13,7 @@
     <select id="selectByGdh" parameterType="Long" resultType="boolean">
         SELECT `gsjgsqbg` FROM <include refid="tab"/> WHERE `gdh`=#{gdh}
     </select>
+    <select id="queryByGdh" parameterType="Long" resultType="PipeReport">
+        SELECT * FROM <include refid="tab"/> WHERE `gdh`=#{gdh}
+    </select>
 </mapper>

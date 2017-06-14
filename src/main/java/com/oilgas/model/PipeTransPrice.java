@@ -18,7 +18,7 @@ public class PipeTransPrice {//管道管输价格表
     private Long id;
 
     private Long gdh;
-    private Float kybggsjg;//可研报告管输价格
+    private Float kybggsjg = 0.222F;//可研报告管输价格
     private Float gdgssbgsjg;//管道公司申报管输价格
     private Float pfgsjg;//批复管输价格
     private Float zxgsjg;//执行管输价格

@@ -11,38 +11,40 @@
         </div>
         <hr/>
         <#if frBasicData??&&frAnnualParameters??&&project??>
-        <form>
+        <form action="${request.contextPath}/report/doCreateReport" method="post">
+            <input value="${project.id}" hidden name="gdh">
+            <input value="${project.name}" name="gdName" hidden>
             <h3 align="center">关于核定<input value="${project.name}">管输价格有关问题的请示</h3>
 
             <p>中国石油天然气股份有限公司：</p>
             <p>  <input value="${project.name}">竣工在即，需在该线投产前核定其管输价格，现将该管线定价有关事宜汇报如下：</p>
             <p>一、<input value="${project.name}">基本情况</p>
-                <textarea style="width: 90%;height: 100px"></textarea>
+                <textarea style="width: 90%;height: 100px" name="condition1"></textarea>
                 <p><font style="color: red">填写说明：简述管道建设项目建设地点、途径地区、管道长度等情况。</font></p>
-                <textarea style="width: 90%;height: 100px"></textarea>
+                <textarea style="width: 90%;height: 100px" name="condition2"></textarea>
                 <p><font style="color: red">填写说明：简述建设项目设计压力、管径、设计输量、站场等情况。</font></p>
-                 <textarea style="width: 90%;height: 100px"></textarea>
+                 <textarea style="width: 90%;height: 100px" name="condition3"></textarea>
                 <p><font style="color: red">填写说明：简述本工程的工程性质、工程类别、建设期等情况。</font></p>
 
             <p>二、<input value="${project.name}">价格测算</p>
             <p>（一）测算依据及主要参数</p>
             <p>以可研报告为基础，结合管道公司在役管道实际情况进行测算，主要参数如下：</p>
             <p>1.管输量：</p>
-            <p><input style="width: 90%" value=""></p>
-            <p>2.管线长度：<input value="${frBasicData.gxcd}">公里。</p>
+            <p><textarea style="width: 90%" readonly name="gslCondition">${gslCondition}</textarea></p>
+            <p>2.管线长度：<input value="${frBasicData.gxcd}" name="gxcd">公里。</p>
             <p>3.动力费用：在生产过程中消耗电的费用。电力消耗量依据可研情况测算，</p>
-            <p><input style="width: 90%"></p>
-            <p>动力价格按照管道沿线的平均用电价格<input value="${frBasicData.hddj}">元/千瓦时测算。</p>
+            <p><textarea style="width: 90%" readonly name="dlfyCondition">${dlfyCondition}</textarea></p>
+            <p>动力价格按照管道沿线的平均用电价格<input value="${frBasicData.hddj}" name="hddj">元/千瓦时测算。</p>
             <p>4.燃料费用：在生产过程中消耗天然气的费用。天然气消耗量依据可研情况测算，</p>
-            <p><input style="width: 90%"></p>
-            <p>天然气价格按照管道沿线天然气最高门站价格<input value="${frBasicData.hqdj}">元/方测算。</p>
-            <p>5.人员成本：项目定员为<input value="${frBasicData.ygsl}">人，年均工资<input value="${frBasicData.rjngz}">万元/人；</p>
-            <p>根据管道公司整体增长水平，年工资增长比例为<input value="${frBasicData.ngzzzbl}">%；根据股份公司规定，工资附加比例为<input value="${frBasicData.gzfjbl}">%。</p>
-            <p>6.固定资产折旧：根据股份公司规定，长输管道折旧年限为<input value="${frBasicData.zjnx}">年，残值率为0%。</p>
-            <p>7.修理费：按照固定资产原值（扣除建设期利息）的<input value="${frBasicData.azcyzcsbz}">%计算。</p>
-            <p>8.评价期：<input value="${frBasicData.pjq}">年（不含建设期）。</p>
-            <p>9.内部收益率：<input value="${frBasicData.jzsyl}">%。</p>
-            <p>10.损耗：损耗率为<input value="${frBasicData.sh}">‰。</p>
+            <p><textarea style="width: 90%"  readonly name="rlfyCondition">${rlfyCondition}</textarea></p>
+            <p>天然气价格按照管道沿线天然气最高门站价格<input value="${frBasicData.hqdj}" name="hqdj">元/方测算。</p>
+            <p>5.人员成本：项目定员为<input value="${frBasicData.ygsl}" name="ygsl">人，年均工资<input value="${frBasicData.rjngz}" name="rjngz">万元/人；</p>
+            <p>根据管道公司整体增长水平，年工资增长比例为<input value="${frBasicData.ngzzzbl}" name="ngzzzbl">%；根据股份公司规定，工资附加比例为<input value="${frBasicData.gzfjbl}"name="gzfjbl">%。</p>
+            <p>6.固定资产折旧：根据股份公司规定，长输管道折旧年限为<input value="${frBasicData.zjnx}" name="zjnx">年，残值率为0%。</p>
+            <p>7.修理费：按照固定资产原值（扣除建设期利息）的<input value="${frBasicData.azcyzcsbz}" name="azcyzcsbz">%计算。</p>
+            <p>8.评价期：<input value="${frBasicData.pjq}" name="pjq">年（不含建设期）。</p>
+            <p>9.内部收益率：<input value="${frBasicData.jzsyl}" name="jzsyl">%。</p>
+            <p>10.损耗：损耗率为<input value="${frBasicData.sh}" name="sh">‰。</p>
             <p>11.其他参数参见附件1。</p>
             <p>（二）测算结果及与可研对比</p>
             <p>1.本版价格测算结果</p>
@@ -50,7 +52,7 @@
             <p>2.可研价格测算结果</p>
             <p>可研测算管输价格为<input value="0.3551">元/方（含增值税）。</p>
             <p>本版价格测算结果与可研价格不同主要是由于以下两方面原因：</p>
-            <textarea style="width: 90%;height: 100px"></textarea>
+            <textarea style="width: 90%;height: 100px" name="compareReason"></textarea>
             <p>测算参数不同对管输价格的影响详见附表2。</p>
             <p>三、关于<input value="${project.name}">定价的建议</p>
             <p>综上所述，建议如下：</p>
@@ -64,6 +66,7 @@
 
             <p align="right">中国石油管道公司</p>
             <p align="right">2015年8月12日</p>
+            <button type="submit" class="btn btn-default">生成报告</button>
         </form>
         </#if>
 
@@ -71,7 +74,7 @@
         <#if project??>
         <p align="center">附件1-1 <input value="${project.name}">管输价格基础参数表</p>
         </#if>
-        <#if frAnnualParameters??>
+        <#if frBasicData??>
         <table class="table table-bordered">
             <thead>
             <tr>

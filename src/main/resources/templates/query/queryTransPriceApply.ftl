@@ -9,10 +9,10 @@
                 <h2 align="center">管输价格申请报告查询</h2>
             </div>
         </div>
-        <form role="form">
+        <form role="form" action="${request.contextPath}/resultTransPriceApply" method="post">
             <div class="form-group">
                 <label>管线名称</label>
-                <input class="form-control" id="gxmc"/>
+                <input class="form-control" id="gxmc" name="gdh"/>
             </div>
             <button type="submit" class="btn btn-default">开始查询</button>
         </form>

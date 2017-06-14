@@ -20,6 +20,19 @@ public class PipeReportServiceImpl implements PipeReportService {
     private PipeReportMapper pipeReportMapper;
 
     @Override
+    public PipeReport selectByGdh(Long gdh) {
+        try{
+
+            PipeReport pipeReport =new PipeReport();
+            pipeReport.setGdh(gdh);
+            return pipeReportMapper.queryByGdh(gdh);
+        }catch (Exception e){
+
+        }
+        return null;
+    }
+
+    @Override
     public Boolean checkReportExist(Long gdh) {
         try {
 
@@ -31,5 +44,22 @@ public class PipeReportServiceImpl implements PipeReportService {
             return false;
         }
 
+    }
+
+    /**
+     * 创建 报告
+     *
+     * @param pipeReport
+     * @return
+     */
+    @Override
+    public Boolean save(PipeReport pipeReport) {
+        try {
+
+            pipeReportMapper.insert(pipeReport);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

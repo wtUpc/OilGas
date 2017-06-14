@@ -52,6 +52,9 @@ public class QueryParam {
             case "xsfy":
                 paramDisplay = "销售费用";
                 break;
+            case "jsq":
+                paramDisplay="建设期";
+                break;
             default:
                 paramDisplay = "";
         }

@@ -10,4 +10,5 @@ public interface PipeReportMapper extends MyMapper<PipeReport> {
 
     //通过管道号查询是否存在管输价格申请报告
     PipeReport selectByGdh (Long gdh);
+    PipeReport queryByGdh (Long gdh);
 }

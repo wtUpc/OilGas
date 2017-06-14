@@ -16,7 +16,7 @@ public class PipeReport {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer gdh;
+    private Long gdh;
     private String gsjgsqbg;
     private String gsjgsqbgfj;
     private String gsjgpfwj;

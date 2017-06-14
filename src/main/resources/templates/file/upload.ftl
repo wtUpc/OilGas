@@ -17,7 +17,7 @@
     <#--</div>-->
 
         <div>
-            <form method="POST" enctype="multipart/form-data" action="/file">
+            <form method="POST" enctype="multipart/form-data" action="${request.contextPath}/file">
                 <table>
                     <tr>
                         <td>File to upload:</td>

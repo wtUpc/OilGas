@@ -2,20 +2,14 @@ package com.oilgas.controller;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.oilgas.dto.CalculationAnnual;
-import com.oilgas.dto.CalculationAnnualItem;
-import com.oilgas.dto.CalculationYear;
-import com.oilgas.dto.GDZXBasic;
+import com.oilgas.dto.*;
 import com.oilgas.model.FrBasicData;
 import com.oilgas.model.FrTransAddress;
 import com.oilgas.model.PipeTransPrice;
 import com.oilgas.model.Project;
-import com.oilgas.service.AnnualParameterService;
-import com.oilgas.service.BasicDataService;
-import com.oilgas.service.PipeTransPriceService;
-import com.oilgas.service.ProjectService;
-import com.oilgas.service.TransAddressService;
+import com.oilgas.service.*;
 import com.oilgas.util.CalculateUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +48,8 @@ public class CalculationController {
         this.annualParameterService = annualParameterService;
         this.pipeTransPriceService = pipeTransPriceService;
     }
+    @Autowired
+    private QueryFRService queryFRService;
 
 
     //计算单条管输价格
@@ -174,4 +170,17 @@ public class CalculationController {
         ModelAndView result =new ModelAndView("calculation/fenXi");
         return result;
     }
+    @PostMapping("/fenXiResult")
+    public ModelAndView doQuery(QueryParam queryParam){
+        ModelAndView result =new ModelAndView("calculation/fenXiResult");
+        QueryResult queryResult = new QueryResult();
+        queryResult.setFrBasicData(queryFRService.queryFRBDSingleParam(queryParam.getGdh(), queryParam.getParamName()));
+        result.addObject("fenXiResult",queryResult);
+        queryParam.initParamDisplay();
+        result.addObject("queryParam",queryParam);
+        System.out.println(queryParam);
+        System.out.println(queryResult);
+        return result;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.oilgas.controller;
 
 
 import com.oilgas.dto.*;
+import com.oilgas.model.PipeReport;
 import com.oilgas.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +21,17 @@ public class QueryController {
     private final QueryFRService queryFRService;
     private final QueryEPService queryEPService;
     private final QueryPriceService queryPriceService;
+    private final PipeReportService pipeReportService;
 
     public QueryController(QueryCDService queryCDService,
                            QueryFRService queryFRService,
                            QueryEPService queryEPService,
-                           QueryPriceService queryPriceService) {
+                           QueryPriceService queryPriceService, PipeReportService pipeReportService) {
         this.queryCDService = queryCDService;
         this.queryFRService = queryFRService;
         this.queryEPService = queryEPService;
         this.queryPriceService = queryPriceService;
+        this.pipeReportService = pipeReportService;
     }
 
 
@@ -102,6 +105,14 @@ public class QueryController {
     @GetMapping("/queryTransPriceApply")//管输价格申请报告查询
     public ModelAndView queryTransPriceApply() {
         ModelAndView result = new ModelAndView("query/queryTransPriceApply");
+        return result;
+    }
+
+    @PostMapping("/resultTransPriceApply")
+    public ModelAndView doQuery(Long gdh){
+        ModelAndView result=new ModelAndView("query/resultTransPriceApply");
+        PipeReport pipeReport = pipeReportService.selectByGdh(gdh);
+        result.addObject("PipeReport",pipeReport);
         return result;
     }
 

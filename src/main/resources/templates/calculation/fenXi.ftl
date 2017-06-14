@@ -5,7 +5,7 @@
 <#include "../components/sider.ftl" />
     <div id="page-wrapper">
         <div class="row">
-            <form role="form" action="" method="post">
+            <form role="form" action="${request.contextPath}/fenXiResult" method="post">
                 <div class="form-group">
                     <label>管道号</label>
                     <input class="form-control" id="gxmc1" name="gdh"/>
@@ -29,25 +29,7 @@
                 </div>
                 <button type="submit" class="btn btn-default">查询</button>
             </form>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th  class="text-center">参数名称</th>
-                    <th  class="text-center">原参数值</th>
-                    <th  class="text-center"><input value="">变化后参数值</th>
-                    <th  class="text-center">变化</th>
-                </tr>
-                </thead>
-                <tbody class="text-center">
-                <tr>
-                    <td>管输价格</td>
-                    <td>0.3551</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-                <button type="submit" class="btn btn-default">计算</button>
-            </table>
+
         </div>
         <hr/>
     </div>
